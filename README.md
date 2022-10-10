@@ -1,4 +1,4 @@
-# TermIO - A home-made Indoor termometer
+# TermIO - A home-made Indoor temp & humidity measuring device
 
 **TermIO** is a ***home-made*** device for measuring indoor temperature and humidity.
 
@@ -9,7 +9,7 @@ Works with the ***Arduino Nano 33 IoT*** + a ***DHT11 sensor***. It is designed 
 -   Temperature and humidity measurement.
 -   It computes the Apparent temperature (feels like).
 -   Display of the temperature and humidity on 4 digit seven segment display.
--   It uses the NANI WiFi module on the Arduino Nano 33 IoT to connect to the internet and send the data to a server/hub/etc.
+-   It uses the NANI WiFi module on the Nano to connect to the internet and send the data to a server/hub/etc.[WIP]
 
 ## Hardware
 
@@ -18,11 +18,11 @@ Termy works with the [Arduino Nano 33 IoT](https://store-usa.arduino.cc/products
 * It is powered by a 32 bit **Arm® Cortex®-M0 Microcontroller**.
 * Works with the Arduino Framework.
 * It has a **Micro USB** port for power and programming.
-* 3.3 V logic level.
+* 3.3V logic level.
 
 We use a [DHT11](https://www.adafruit.com/product/386) sensor for measuring temperature and humidity.
 
-Displaying the temperature is done with a generinc 4 digit seven segment display.
+Displaying the temperature is done with a generic 4 digit seven segment display.
 
 ## Software
 
