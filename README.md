@@ -1,10 +1,10 @@
-# Termy - Amateur Indoor termometer
+# TermIO - A home-made Indoor termometer
 
 Built with Love :heart: in Colombia :colombia:
 
 **Termy** is a ***home-made*** device for measuring indoor temperature and humidity
 
-Works with the ***Arduino Nano 33 IoT*** + a ***DHT11 sensor***. It is designed to be as simple as possible and to be powered by a USB cable.
+Works with the ***Arduino Nano 33 IoT*** + a ***DHT11 sensor***. It is designed to be as simple as possible.
 
 ## Features
 
