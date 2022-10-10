@@ -1,6 +1,6 @@
 # TermIO - A home-made Indoor termometer
 
-**Termy** is a ***home-made*** device for measuring indoor temperature and humidity
+**TermIO** is a ***home-made*** device for measuring indoor temperature and humidity.
 
 Works with the ***Arduino Nano 33 IoT*** + a ***DHT11 sensor***. It is designed to be as simple as possible.
 
