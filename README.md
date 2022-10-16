@@ -1,10 +1,8 @@
 # TermIO - A home-made Indoor thermometer
 
-Built with Love :heart: in Colombia :colombia:
-
 **TermIO** is a ***home-made*** device for measuring indoor temperature and humidity
 
-Works with the ***Arduino Nano 33 IoT*** + a ***DHT11 sensor***. It is designed to be as simple as possible.
+Powered by the ***Arduino Nano 33 IoT*** + a ***DHT11 sensor***.
 
 ## Features
 
@@ -17,7 +15,7 @@ Works with the ***Arduino Nano 33 IoT*** + a ***DHT11 sensor***. It is designed 
 
 TermIO works with the [Arduino Nano 33 IoT](https://store-usa.arduino.cc/products/arduino-nano-33-iot) that Features:
 
-- Built-in WiFi and Low Energy Bluetooth. 
+- Built-in WiFi and Low Energy Bluetooth.
 
 - It is powered by a 32 bit **Arm® Cortex®-M0 Microcontroller**.
 
@@ -30,6 +28,11 @@ TermIO works with the [Arduino Nano 33 IoT](https://store-usa.arduino.cc/product
 We use a [DHT11](https://www.adafruit.com/product/386) sensor for measuring temperature and humidity.
 
 Displaying the temperature is done with a generic 4 digit seven segment display.
+
+### Schematics
+
+![Schematics](/schematics/TermIO%20Schm.png)
+Connection schematic for this version of TermIO.
 
 ## Software
 
