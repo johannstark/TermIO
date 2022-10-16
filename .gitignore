@@ -11,3 +11,6 @@
 # Dev Files
 include/secret.h
 
+# macOS
+.DS_Store
+
