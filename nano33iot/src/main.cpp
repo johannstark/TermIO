@@ -1,3 +1,11 @@
+/*******************************************************
+TermIO - Indoor temperature and humidity monitor
+Source Code for Arduino Nano 33 IoT
+
+Written by Juan Esteban Camacho
+Made with love in Colombia 🇨🇴
+*******************************************************/
+
 // Libraries
 #include <SevSeg.h>
 #include <DHT.h>
