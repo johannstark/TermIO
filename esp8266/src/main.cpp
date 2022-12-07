@@ -18,7 +18,7 @@ Made with love in Colombia 🇨🇴
 #include <secret.h>
 
 // Pin definitions
-#define SENSOR_PIN 0
+#define SENSOR_PIN 14
 
 // Temp Sensor
 DHT dht(SENSOR_PIN, DHT11);
@@ -62,15 +62,25 @@ static const unsigned char PROGMEM logo_bmp[] =
   B01110000, B01110000,
   B00000000, B00110000 };
 
-void draw_bitmap(void) {
+void boot_sequence(void) {
   display.clearDisplay();
+  delay(2000);
+  display.setTextSize(1);
+  display.setTextColor(SSD1306_WHITE);
+  display.setCursor(0,10);
+  display.println(F("Starting up TermIO.."));
+  display.setTextSize(1);
+  display.println(F("by johannstark"));
+  display.display();
+  delay(5000);
 
+  display.clearDisplay();
   display.drawBitmap(
     (display.width()  - LOGO_WIDTH ) / 2,
     (display.height() - LOGO_HEIGHT) / 2,
     logo_bmp, LOGO_WIDTH, LOGO_HEIGHT, 1);
   display.display();
-  delay(1000);
+  delay(3000);
 }
 
 void setup() {
@@ -83,18 +93,24 @@ void setup() {
     Serial.println(F("SSD1306 allocation failed"));
     for(;;); // Don't proceed, loop forever
   }
-  // Clear the buffer
+  else {
+    Serial.println(F("SSD1306 allocation success"));
+    boot_sequence();
+  }
+  // Clear the buffer and set display to default
   display.clearDisplay();
-  display.drawPixel(10, 10, SSD1306_WHITE);  // Draw a single pixel in white
-  // Show the display buffer on the screen. You MUST call display() after
-  // drawing commands to make them visible on screen!
-  display.display();
+  display.setTextSize(1);
+  display.setTextColor(SSD1306_WHITE);
 
   // WiFi LED initialization
-  pinMode(D4, OUTPUT);
+  // pinMode(D4, OUTPUT);
 
   // attempt to connect to Wi-Fi network:
   while (status != WL_CONNECTED) {
+    display.clearDisplay();
+    display.setCursor(0,0);
+    display.println(F("Connecting to WiFi..."));
+    display.display();
     Serial.print("Attempting to connect to network: ");
     Serial.println(ssid);
     // Connect to WPA/WPA2 network:
@@ -105,6 +121,11 @@ void setup() {
   }
   Serial.print("Connected to network ");
   Serial.println(ssid);
+  display.clearDisplay();
+  display.setCursor(0,0);
+  display.println(F("WiFi Connected!"));
+  display.display();
+  delay(3000);
 
   // Start sensor
   Serial.println("Starting sensor");
@@ -124,6 +145,12 @@ void loop() {
     feels_like = dht.computeHeatIndex(dht.readTemperature(), dht.readHumidity(), false);
     Serial.print("Temp: ");
     Serial.println(feels_like);
+    display.clearDisplay();
+    display.setCursor(0,0);
+    display.setTextSize(2);
+    display.print(feels_like); display.println(F(" C"));
+    display.print(dht.readHumidity()); display.println(F(" %"));
+    display.display();
     // Check if any read fail
     if (isnan(feels_like)) {
       feels_like = prev_reading;
