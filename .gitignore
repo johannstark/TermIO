@@ -9,8 +9,8 @@
 .vscode/
 
 # Dev Files
-include/secret.h
+esp8266/include/secret.h
+nano33iot/include/secret.h
 
 # macOS
 .DS_Store
-
