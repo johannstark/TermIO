@@ -8,11 +8,11 @@
 
 ## Features
 
-- Temperature and humidity measurement.
-- It computes the Apparent temperature (feels like).
-- Display of the temperature and humidity on 4 digit seven segment display/OLED Display.
-- It uses the NANI WiFi/ESP8266 WiFi module to connect to the internet and send the data to a server/hub/etc. [WIP] :warning:
-- Connects to [Homebridge](https://homebridge.io) with a [HTTP Webhook plugin](https://www.npmjs.com/package/homebridge-http-webhooks) to show the data on HomeKit. [WIP] :warning:
+* Temperature and humidity measurement.
+* It computes the Apparent temperature (feels like).
+* Display of the temperature and humidity on 4 digit seven segment display/OLED Display.
+* It uses the NANI WiFi/ESP8266 WiFi module to connect to the internet and send the data to a server/hub/etc. [WIP] :warning:
+* Connects to [Homebridge](https://homebridge.io) with a [HTTP Webhook plugin](https://www.npmjs.com/package/homebridge-http-webhooks) to show the data on HomeKit. [WIP] :warning:
 
 ## Getting Started
 
@@ -31,15 +31,15 @@ TermIO has 2 working versions:
 
 TermIO works with the [Arduino Nano 33 IoT](https://store-usa.arduino.cc/products/arduino-nano-33-iot) that Features:
 
-- Built-in WiFi and Low Energy Bluetooth.
+* Built-in WiFi and Low Energy Bluetooth.
 
-- It is powered by a 32 bit **Arm® Cortex®-M0 Microcontroller**.
+* It is powered by a 32 bit **Arm® Cortex®-M0 Microcontroller**.
 
-- Works with the Arduino Framework.
+* Works with the Arduino Framework.
 
-- It has a **Micro USB** port for power and programming.
+* It has a **Micro USB** port for power and programming.
 
-- 3.3V logic level.
+* 3.3V logic level.
 
 We use a [DHT11](https://www.adafruit.com/product/386) sensor for measuring temperature and humidity.
 
@@ -56,9 +56,11 @@ Here are the main schematics to connect the components to the development board.
 **:warning: POWER THE CIRCUIT WITH 3.3V :warning:**
 
 ### Arduino Nano 33 IoT
+
 ![ArduSchematics](nano33iot/schematics/TermIO%20Schm.png)
 
 ### ESP8266(Wemos D1 Mini Pro)
+
 ![ESPSchematics](esp8266/schematics/esp8266_schm.png)
 
 ## Software
