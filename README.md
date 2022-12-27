@@ -55,11 +55,11 @@ Here are the main schematics to connect the components to the development board.
 
 **:warning: POWER THE CIRCUIT WITH 3.3V :warning:**
 
-### Arduino Nano 33 IoT
+### Arduino Nano
 
 ![ArduSchematics](nano33iot/schematics/TermIO%20Schm.png)
 
-### ESP8266(Wemos D1 Mini Pro)
+### ESP8266
 
 ![ESPSchematics](esp8266/schematics/esp8266_schm.png)
 
@@ -69,10 +69,10 @@ C++ Code built with the amazing [PlatformIO IDE](https://platformio.org/) using 
 
 Libraries used in the project:
 
-- [Adafruit DHT Sensor Library](https://registry.platformio.org/libraries/adafruit/DHT%20sensor%20library)
-- [Adafruit Unified Sensor](https://registry.platformio.org/libraries/adafruit/Adafruit%20Unified%20Sensor) (Dependency of the DHT Sensor Library)
-- [SevSeg by Dean Reading](https://registry.platformio.org/libraries/Dean%20Reading/SevSeg) (Arduino Seven segment display library)
-- [Adafruit's GFX and SSD1306 libraries](https://registry.platformio.org/libraries/adafruit/Adafruit%20GFX%20Library) (OLED Display library)
+* [Adafruit DHT Sensor Library](https://registry.platformio.org/libraries/adafruit/DHT%20sensor%20library)
+* [Adafruit Unified Sensor](https://registry.platformio.org/libraries/adafruit/Adafruit%20Unified%20Sensor) (Dependency of the DHT Sensor Library)
+* [SevSeg by Dean Reading](https://registry.platformio.org/libraries/Dean%20Reading/SevSeg) (Arduino Seven segment display library)
+* [Adafruit's GFX and SSD1306 libraries](https://registry.platformio.org/libraries/adafruit/Adafruit%20GFX%20Library) (OLED Display library)
 
 ## License
 
