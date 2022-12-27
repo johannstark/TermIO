@@ -9,7 +9,7 @@
 .vscode/
 
 # Dev Files
-secret.h*
+secret.*
 
 # macOS
 .DS_Store
