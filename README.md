@@ -28,10 +28,18 @@ TermIO Ver. 1 vs Ver. 2
 
 1. Build the circuit using the [schematics (ClickMe)](#building-the-circuit) based on the board you are using. (Arduino Nano 33 or ESP8266)
 2. Clone this repository and open it with the PlatformIO IDE. Be aware to open the right folder depending on your development board.
-
-    `git clone https://github.com/johannstark/TermIO.git`
+    
+    ```shell
+    git clone https://github.com/johannstark/TermIO.git
+    ```
 
 3. Create `include/secret.h` header file to contain the WiFi credentials to be use by TermIO.
+    
+    ```c++
+    char ssid[] = "xyz";          
+    char pass[] = "xyz"; 
+    ```
+    
 4. Build and upload the code to your development board using PlatformIO.
 
 ***
