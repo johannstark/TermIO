@@ -6,7 +6,9 @@
 
 * Version 2 of the device is powered by the ***ESP8266(Wemos D1 Mini Pro)*** + a ***DHT11 sensor*** + a ***0.91" OLED display***.
 
-<div style="text-align:center">TermIO Ver. 1 vs Ver. 2
+<div style="text-align:center">
+
+TermIO Ver. 1 vs Ver. 2
 
 <img src='docs_assets/IMG_1188.jpeg' alt="TermIO Version 1" style="height: 400px"/>
 <img src='docs_assets/IMG_8AA9019B3988-1.jpeg' alt="TermIO Version 2" style="height: 400px"/>
