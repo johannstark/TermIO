@@ -6,6 +6,11 @@
 
 * Version 2 of the device is powered by the ***ESP8266(Wemos D1 Mini Pro)*** + a ***DHT11 sensor*** + a ***0.91" OLED display***.
 
+TermIO Ver. 1 vs Ver. 2
+
+<img src='docs_assets/IMG_1188.jpeg' alt="TermIO Version 1" style="height: 400px"/>
+<img src='docs_assets/IMG_8AA9019B3988-1.jpeg' alt="TermIO Version 2" style="height: 400px"/>
+
 ## Features
 
 * Temperature and humidity measurement.
@@ -14,12 +19,17 @@
 * It uses the NANI WiFi/ESP8266 WiFi module to connect to the internet and send the data to a server/hub/etc. [WIP] :warning:
 * Connects to [Homebridge](https://homebridge.io) with a [HTTP Webhook plugin](https://www.npmjs.com/package/homebridge-http-webhooks) to show the data on HomeKit. [WIP] :warning:
 
+***
+
 ## Getting Started
 
-1. Build the circuit using the [schematics](#schematics) based on the board you are using. (Arduino Nano 33 or ESP8266)
+1. Build the circuit using the [schematics (ClickMe)](#building-the-circuit) based on the board you are using. (Arduino Nano 33 or ESP8266)
 2. Clone this repository and open it with the PlatformIO IDE. Be aware to open the right folder depending on your development board.
+
+    `git clone https://github.com/johannstark/TermIO.git`
+
 3. Create `include/secret.h` header file to contain the WiFi credentials to be use by TermIO.
-4. Build and upload the code to your development board.
+4. Build and upload the code to your development board using PlatformIO.
 
 ***
 
@@ -29,37 +39,57 @@ TermIO has 2 working versions:
 
 ### Arduino Nano 33 IoT
 
-TermIO works with the [Arduino Nano 33 IoT](https://store-usa.arduino.cc/products/arduino-nano-33-iot) that Features:
+TermIO V1 works with the [Arduino Nano 33 IoT](https://store-usa.arduino.cc/products/arduino-nano-33-iot) that Features:
 
 * Built-in WiFi and Low Energy Bluetooth.
-
-* It is powered by a 32 bit **Arm® Cortex®-M0 Microcontroller**.
-
+* It is powered by a 32 bit **Arm® Cortex®-M0 processor**.
 * Works with the Arduino Framework.
-
 * It has a **Micro USB** port for power and programming.
-
 * 3.3V logic level.
 
 We use a [DHT11](https://www.adafruit.com/product/386) sensor for measuring temperature and humidity.
 
 Displaying the temperature is done with a generic 4 digit seven segment display.
 
-### ESP8266(Wemos D1 Mini Pro)
+### Wemos D1 Mini Pro
+
+We made a second version of the device using a ESP8266 chip onboard of the Wemos D1 Mini Pro. This board features:
+
+* A ESP8266 WiFi chip with a Tensilica L106 32-bit RISC processor.
+* Built-in antenna
+* Work with Arduino, MicroPython and NodeMCU frameworks.
+* Also 3.3V logic level.
 
 ***
 
-## Schematics
+## Building the circuit
 
 Here are the main schematics to connect the components to the development board. I suggest to power the entire circuit with a [breadboard power supply](https://www.amazon.com/-/es/ALAMSCN-alimentación-tablero-soldadura-bater%C3%ADa/dp/B08JYPMCZY/ref=sr_1_3?keywords=breadboard+power+supply+module&qid=1672180516&sr=8-3) that delivers both 5V and 3.3V from a 12V socket or USB cable.
 
 **:warning: POWER THE CIRCUIT WITH 3.3V :warning:**
 
-### Arduino Nano
+### BOM (Bills of Materials)
+
+* x1 DHT11 sensor
+* x1 Breadboard power supply module (or any way to power 3.3V)
+* x1 micro USB cable (to upload your code from the PC!)
+
+For the Arduino Nano version, you will also need:
+
+* x1 Seven segment display (in this case a 3461AS display)
+* x6 330Ω resistors
+* x2 LEDs (any color would be ok)
+
+or if you go with the Wemos board:
+
+* x1 0.91" OLED display
+* x1 Wemos D1 Mini Pro
+
+### Arduino Nano schematics
 
 ![ArduSchematics](nano33iot/schematics/TermIO%20Schm.png)
 
-### ESP8266
+### D1 Mini Pro schematics
 
 ![ESPSchematics](esp8266/schematics/esp8266_schm.png)
 
