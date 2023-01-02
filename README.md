@@ -98,7 +98,7 @@ or if you go with the Wemos board:
 
 ### Arduino Nano schematics
 
-![ArduSchematics](nano33iot/schematics/Termio Schm.png)
+![ArduSchematics](nano33iot/schematics/TermioSchm.png)
 
 ### D1 Mini Pro schematics
 
