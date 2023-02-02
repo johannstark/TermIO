@@ -9,6 +9,8 @@ Made with love in Colombia 🇨🇴
 // Libraries
 #include <DHT.h>
 #include <ESP8266WiFi.h>
+#include <ESP8266HTTPClient.h>
+#include <WiFiClient.h>
 #include <SPI.h>
 #include <Wire.h>
 #include <Adafruit_GFX.h>
@@ -32,10 +34,14 @@ char res[] = {};
 
 // WiFi Setup 
 int status = WL_IDLE_STATUS;             // the Wi-Fi radio's status
-int ledState = LOW;                       //ledState used to set the LED
 unsigned long previousMillisInfo = 0;     //will store last time Wi-Fi information was updated
-unsigned long previousMillisLED = 0;      // will store the last time LED was updated
 const int intervalInfo = 5000;            // interval at which to update the board information
+
+// Homebridge Config
+WiFiClient client;
+HTTPClient hub;
+String accessory_id = "";
+String hub_url = "http://homebridge.local:51828/";
 
 // Display class
 #define SCREEN_WIDTH 128 // OLED display width, in pixels
@@ -83,6 +89,31 @@ void boot_sequence(void) {
   delay(3000);
 }
 
+// Push data to Homebridge
+void push_data(float data, String reading_type) {
+  // Make a GET request to homebridge
+  if (reading_type == "temperature") {
+    accessory_id = "termio-temperature";
+  }
+  else if (reading_type == "humidity") {
+    accessory_id = "termio-humidity";
+  }
+  else {
+    Serial.println("[HTTP - Homebridge] Invalid reading type");
+    return;
+  }
+  String endpoint = hub_url+"?accessoryId="+accessory_id+"&value="+String(data);
+  if (hub.begin(client, endpoint)) {
+    // if it works, get the status code and response
+    int status_code = hub.GET();
+    Serial.printf("[HTTP - Homebridge] GET %s %d VALUE: %f - ", accessory_id.c_str(), status_code, data);
+    Serial.println("response: " + hub.getString());
+  }
+  else {
+    Serial.println("[HTTP - Homebridge] Unable to connect");
+  }
+}
+
 void setup() {
   // Serial port
   Serial.begin(9600);
@@ -102,20 +133,16 @@ void setup() {
   display.setTextSize(1);
   display.setTextColor(SSD1306_WHITE);
 
-  // WiFi LED initialization
-  // pinMode(D4, OUTPUT);
-
   // attempt to connect to Wi-Fi network:
+  WiFi.mode(WIFI_STA);
+  display.clearDisplay();
+  display.setCursor(0,0);
+  display.println(F("Connecting to WiFi..."));
+  display.display();
   while (status != WL_CONNECTED) {
-    display.clearDisplay();
-    display.setCursor(0,0);
-    display.println(F("Connecting to WiFi..."));
-    display.display();
-    Serial.print("Attempting to connect to network: ");
-    Serial.println(ssid);
+    Serial.println("Attempting to connect to network: "+String(ssid));
     // Connect to WPA/WPA2 network:
     status = WiFi.begin(ssid, pass);
-
     // wait 10 seconds for connection:
     delay(10000);
   }
@@ -132,7 +159,6 @@ void setup() {
   dht.begin();
 }
 
-
 void loop() {
   // When timer finish
   long current_time = millis();
@@ -143,21 +169,26 @@ void loop() {
     
     // Read Sensor
     feels_like = dht.computeHeatIndex(dht.readTemperature(), dht.readHumidity(), false);
-    Serial.print("Temp: ");
-    Serial.println(feels_like);
-    display.clearDisplay();
-    display.setCursor(0,0);
-    display.setTextSize(2);
-    display.print(feels_like); display.println(F(" C"));
-    display.print(dht.readHumidity()); display.println(F(" %"));
-    display.display();
     // Check if any read fail
-    if (isnan(feels_like)) {
-      feels_like = prev_reading;
-    }
-    else {
+    if (isnan(feels_like)) feels_like = prev_reading;
+    if (feels_like != prev_reading) {
+      // If the reading is different, make the reading
+      Serial.print("Temp: ");
+      Serial.println(feels_like);
+      display.clearDisplay();
+      display.setCursor(0,0);
+      display.setTextSize(2);
+      display.print(F("T:")); display.print(feels_like); display.println(F(" C"));
+      display.print(F("H:")); display.print(dht.readHumidity()); display.println(F(" %"));
+      display.display();
+
+      // and Push it to Homebridge
+      push_data(feels_like, "temperature");
+      push_data(dht.readHumidity(), "humidity");
+
+      // Update previous reading
       prev_reading = feels_like;
     }
+    // Otherwise, do nothing
   }
-  // Here, display the value
 }
