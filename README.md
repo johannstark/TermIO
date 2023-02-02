@@ -10,8 +10,9 @@
 
 TermIO Ver. 1 vs Ver. 2
 
-<img src='docs_assets/IMG_1188.jpeg' alt="TermIO Version 1" style="height: 400px"/>
-<img src='docs_assets/IMG_8AA9019B3988-1.jpeg' alt="TermIO Version 2" style="height: 400px"/>
+<img src='docs_assets/IMG_1188.jpeg' alt="TermIO Version 1" style="height: 200px"/>
+<img src='docs_assets/IMG_8AA9019B3988-1.jpeg' alt="TermIO Version 2" style="height: 200px"/>
+<img src='docs_assets/TermIo%20Homebridge.jpeg' alt="TermIO Homebridge UI" style="height: 200px"/>
 </div>
 
 ## Features
@@ -19,28 +20,50 @@ TermIO Ver. 1 vs Ver. 2
 * Temperature and humidity measurement.
 * It computes the Apparent temperature (feels like).
 * Display of the temperature and humidity on 4 digit seven segment display/OLED Display.
-* It uses the NANI WiFi/ESP8266 WiFi module to connect to the internet and send the data to a server/hub/etc. [WIP] :warning:
-* Connects to [Homebridge](https://homebridge.io) with a [HTTP Webhook plugin](https://www.npmjs.com/package/homebridge-http-webhooks) to show the data on HomeKit. [WIP] :warning:
+* It uses the NANI WiFi/ESP8266 WiFi module to connect to the internet and send the data to a server/hub/etc.
+* Connects to [Homebridge](https://homebridge.io) with a [HTTP Webhook plugin](https://www.npmjs.com/package/homebridge-http-webhooks) to show the data on HomeKit.
 
 ***
 
 ## Getting Started
 
-1. Build the circuit using the [schematics (ClickMe)](#building-the-circuit) based on the board you are using. (Arduino Nano 33 or ESP8266)
-2. Clone this repository and open it with the PlatformIO IDE. Be aware to open the right folder depending on your development board.
+1. Install [Homebridge](https://homebridge.io) on a RaspberryPi (or similar) [Click me for instructions](https://github.com/homebridge/homebridge-raspbian-image/wiki/Getting-Started)
+2. Install [HTPP Webhooks Plugin](https://github.com/benzman81/homebridge-http-webhooks#readme) via Homebridge UI by accesing `homebridge.local` on your browser.
+3. Set two new devices:
+
+    * ID: `termio-temperature` as temperature sensor
+    * ID: `termio-humidity` as humidity sensor
+    
+4. Build the circuit using the [schematics (ClickMe)](#building-the-circuit) based on the board you are using. (Arduino Nano 33 or ESP8266). 
+
+:warning: Only the ESP8266 Version of termio supports Homebridge for now :warning:
+
+5. Clone this repository and open it with the PlatformIO IDE. Be aware to open the right folder depending on your development board.
     
     ```shell
     git clone https://github.com/johannstark/TermIO.git
     ```
 
-3. Create `include/secret.h` header file to contain the WiFi credentials to be use by TermIO.
+6. Create `include/secret.h` header file to contain the WiFi credentials to be use by TermIO.
     
     ```c++
     char ssid[] = "xyz";          
     char pass[] = "xyz"; 
     ```
     
-4. Build and upload the code to your development board using PlatformIO.
+7. Make sure the host and port of homebridge is rightly set on the code (main.cpp:44 -> Line 44):
+
+    ```c++
+    String hub_url = "http://homebridge.local:51828/";
+    ```
+    
+8. Build and upload the code to your development board using PlatformIO.
+    
+9. PowerUp the device and check readings
+
+10. Use the QR Code on the Homebridge UI to add a Hub to your Home App on iOS or MacOS
+
+11. Enjoy!
 
 ***
 
@@ -114,6 +137,10 @@ Libraries used in the project:
 * [Adafruit Unified Sensor](https://registry.platformio.org/libraries/adafruit/Adafruit%20Unified%20Sensor) (Dependency of the DHT Sensor Library)
 * [SevSeg by Dean Reading](https://registry.platformio.org/libraries/Dean%20Reading/SevSeg) (Arduino Seven segment display library)
 * [Adafruit's GFX and SSD1306 libraries](https://registry.platformio.org/libraries/adafruit/Adafruit%20GFX%20Library) (OLED Display library)
+
+Similar projects:
+
+* [ESP32 Pool Thermometer](https://www.instructables.com/ESP32-Pool-Thermometer-Works-With-HomeKit-and-Alex/)
 
 ## License
 
