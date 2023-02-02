@@ -16,7 +16,7 @@ TermIO Ver. 1 vs Ver. 2
 Homebridge UI & Home App on macOS
 
 <img src='docs_assets/TermIo%20Homebridge.jpeg' alt="TermIO Homebridge UI" style="height: 300px"/>
-<img src='docs_assets/HomeKitUI.png' alt="TermIO HomeApp" style="height: 300px"/>
+<img src='docs_assets/HomeKitUI.png' alt="TermIO HomeApp" style="height: 250px"/>
 </div>
 
 ## Features
