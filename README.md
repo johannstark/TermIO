@@ -10,9 +10,13 @@
 
 TermIO Ver. 1 vs Ver. 2
 
-<img src='docs_assets/IMG_1188.jpeg' alt="TermIO Version 1" style="height: 200px"/>
-<img src='docs_assets/IMG_8AA9019B3988-1.jpeg' alt="TermIO Version 2" style="height: 200px"/>
-<img src='docs_assets/TermIo%20Homebridge.jpeg' alt="TermIO Homebridge UI" style="height: 200px"/>
+<img src='docs_assets/IMG_1188.jpeg' alt="TermIO Version 1" style="height: 400px"/>
+<img src='docs_assets/IMG_8AA9019B3988-1.jpeg' alt="TermIO Version 2" style="height: 400px"/>
+
+Homebridge UI & Home App on macOS
+
+<img src='docs_assets/TermIo%20Homebridge.jpeg' alt="TermIO Homebridge UI" style="height: 300px"/>
+<img src='docs_assets/HomeKitUI.png' alt="TermIO HomeApp" style="height: 300px"/>
 </div>
 
 ## Features
