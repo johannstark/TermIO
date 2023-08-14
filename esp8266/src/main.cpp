@@ -98,6 +98,9 @@ void push_data(float data, String reading_type) {
   else if (reading_type == "humidity") {
     accessory_id = "termio-humidity";
   }
+  else if (reading_type == "plant") {
+    accessory_id = "charlie-brown";
+  }
   else {
     Serial.println("[HTTP - Homebridge] Invalid reading type");
     return;
@@ -166,28 +169,31 @@ void loop() {
     
     // Reset timer
     prev_time = current_time;
+
+    // Read Sensors
+    float temp_reading = dht.readTemperature();
+    int analog_value = analogRead(A0);
+    int plant_humidity = map(analog_value, 239, 595, 100, 0);
     
-    // Read Sensor
-    feels_like = dht.computeHeatIndex(dht.readTemperature(), dht.readHumidity(), false);
     // Check if any read fail
-    if (isnan(feels_like)) feels_like = prev_reading;
-    if (feels_like != prev_reading) {
+    if (temp_reading != prev_reading) {
       // If the reading is different, make the reading
-      Serial.print("Temp: ");
-      Serial.println(feels_like);
+      Serial.print("AnalogValue: ");
+      Serial.println(analog_value);
       display.clearDisplay();
       display.setCursor(0,0);
       display.setTextSize(2);
-      display.print(F("T:")); display.print(feels_like); display.println(F(" C"));
-      display.print(F("H:")); display.print(dht.readHumidity()); display.println(F(" %"));
+      display.print(F("T:")); display.print(temp_reading); display.println(F(" C"));
+      display.print(F("Soil: ")); display.print(plant_humidity); display.println(F(" %"));
       display.display();
 
       // and Push it to Homebridge
-      push_data(feels_like, "temperature");
+      push_data(dht.readTemperature(), "temperature");
       push_data(dht.readHumidity(), "humidity");
+      push_data(plant_humidity, "plant");
 
       // Update previous reading
-      prev_reading = feels_like;
+      prev_reading = temp_reading;
     }
     // Otherwise, do nothing
   }
